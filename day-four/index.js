@@ -225,3 +225,40 @@ Promise.race([fast, slow]).then((value) => {
 Promise.any([fast, slow]).then((value) => {
   console.log(value); // Slow!
 })
+
+
+// 🟢 What is async / await?
+// async and await are syntactic sugar over Promises.
+// They make asynchronous code look and behave like synchronous code, improving readability and error handling.
+
+// async Keyword
+// > Used before a function to turn it into an asynchronous function.
+// > An async function always returns a Promise, even if you return a non-promise value.
+async function greet() {
+    return "Hello Jatin";
+}
+  
+greet().then(console.log); // Output: Hello Jatin
+
+// await Keyword
+// > Used inside async functions.
+// > Pauses execution of the function until the Promise resolves or rejects.
+// > Allows writing step-by-step logic like synchronous code.
+
+function getData() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("✅ Data fetched!");
+      }, 2000);
+    });
+  }
+  
+  async function showData() {
+    console.log("Fetching data...");
+    const result = await getData(); // waits for promise to resolve
+    console.log(result);
+    console.log("All done!");
+  }
+  
+  showData();
+  
