@@ -67,41 +67,41 @@ console.log('api end...')
 // Difficult to maintain
 // Error-prone
 // ex: 
-function registerUser(callback) {
-    setTimeout(() => {
-      console.log("1. User registered");
-      callback();
-    }, 1000);
-  }
+// function registerUser(callback) {
+//     setTimeout(() => {
+//       console.log("1. User registered");
+//       callback();
+//     }, 1000);
+//   }
   
-  function sendWelcomeEmail(callback) {
-    setTimeout(() => {
-      console.log("2. Welcome email sent");
-      callback();
-    }, 1000);
-  }
+//   function sendWelcomeEmail(callback) {
+//     setTimeout(() => {
+//       console.log("2. Welcome email sent");
+//       callback();
+//     }, 1000);
+//   }
   
-  function fetchUserPreferences(callback) {
-    setTimeout(() => {
-      console.log("3. User preferences fetched");
-      callback();
-    }, 1000);
-  }
+//   function fetchUserPreferences(callback) {
+//     setTimeout(() => {
+//       console.log("3. User preferences fetched");
+//       callback();
+//     }, 1000);
+//   }
   
-  function showDashboard() {
-    setTimeout(() => {
-      console.log("4. Dashboard shown");
-    }, 1000);
-  }
+//   function showDashboard() {
+//     setTimeout(() => {
+//       console.log("4. Dashboard shown");
+//     }, 1000);
+//   }
   
   // Callback Hell (Pyramid of Doom)
-  registerUser(() => {
-    sendWelcomeEmail(() => {
-      fetchUserPreferences(() => {
-        showDashboard();
-      });
-    });
-  });
+//   registerUser(() => {
+//     sendWelcomeEmail(() => {
+//       fetchUserPreferences(() => {
+//         showDashboard();
+//       });
+//     });
+//   });
   
 // While the output looks fine, the code is deeply nested, making it:
 // Hard to read
@@ -117,16 +117,60 @@ function registerUser(callback) {
 // > Fulfilled – The operation completed successfully.
 // > Rejected – The operation failed.
 // Ex: 
-const fetchData = new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-        let success = false; // you can use random number generator to randomize its value
-        if(success) resolve({success:true, message:"res generated succesfully!"})
-        else reject("Status : 500 - Server Error")
-    },2000)
+// const fetchData = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         let success = false; // you can use random number generator to randomize its value
+//         if(success) resolve({success:true, message:"res generated succesfully!"})
+//         else reject("Status : 500 - Server Error")
+//     },2000)
+// })
+
+// fetchData.then((data)=>{
+//      console.log(data);
+// }).catch((error)=>{
+//    console.error(error);
+// })
+
+// Promise Chaining
+// You can chain multiple .then() blocks to perform sequential async tasks.
+// Lets try to implement user registration flow using promise
+const register = async() => {
+    console.log("✴️ flow start ...")
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve("1 : user registered!");
+        },2000)
+    })
+}
+
+const sendVerifyMail = () => {
+    return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res("2 : email verified!")
+        },1000)
+    })
+}
+
+const showUserDashboard = () => {
+    return new Promise((res,rej)=>{
+       setTimeout(()=>{
+         res("3 : show dashboard!")
+       },1000)
+    })
+}
+
+register().then((data)=>{
+     console.log(data);
+     return sendVerifyMail();
+}).then((data)=>{
+    console.log(data);
+    return showUserDashboard();
+}).then((data)=>{
+    console.log(data);
+    console.log("☪️ flow end ...")
+}).catch(()=>{
+    console.log("🎡 unexpected error!")
 })
 
-fetchData.then((data)=>{
-     console.log(data);
-}).catch((error)=>{
-   console.error(error);
-})
+// Problem with promise chaining
+// Only one catch() is needed for the entire chain. If any .then() fails, it jumps to .catch().
