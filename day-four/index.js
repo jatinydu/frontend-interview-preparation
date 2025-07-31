@@ -159,18 +159,69 @@ const showUserDashboard = () => {
     })
 }
 
-register().then((data)=>{
-     console.log(data);
-     return sendVerifyMail();
-}).then((data)=>{
-    console.log(data);
-    return showUserDashboard();
-}).then((data)=>{
-    console.log(data);
-    console.log("☪️ flow end ...")
-}).catch(()=>{
-    console.log("🎡 unexpected error!")
-})
+// register().then((data)=>{
+//      console.log(data);
+//      return sendVerifyMail();
+// }).then((data)=>{
+//     console.log(data);
+//     return showUserDashboard();
+// }).then((data)=>{
+//     console.log(data);
+//     console.log("☪️ flow end ...")
+// }).catch(()=>{
+//     console.log("🎡 unexpected error!")
+// })
 
 // Problem with promise chaining
 // Only one catch() is needed for the entire chain. If any .then() fails, it jumps to .catch().
+
+
+// 🟢 Promise Combinators
+// Promise combinators are static methods provided by the Promise object that allow you to handle multiple promises at once in different ways.
+// Most Common Promise Combinators
+// > Promise.all() - waits for all promises to fulfill (or rejects if any fail)
+// > Promise.allSettled() - Waits for all promises to finish (fulfilled or rejected)
+// > Promise.race() - Returns the result of the first settled promise (fulfilled or rejected)
+// > Promise.any() - Returns the first fulfilled promise (ignores rejections)
+
+// Promise.all()
+// used when You want to wait for multiple promises to complete successfully. If any promise fails, the whole thing fails.
+// const p1 = Promise.resolve(10);
+// const p2 = Promise.resolve(20);
+// const p3 = Promise.resolve(30);
+
+// Promise.all([p1, p2, p3]).then((values) => {
+//   console.log(values); // [10, 20, 30]
+// });
+
+// Promise.allSettled()
+// Used when You want to know the result of all promises, whether they succeeded or failed.
+const p1 = Promise.resolve("Success");
+const p2 = Promise.reject("Error");
+
+Promise.allSettled([p1, p2]).then((results) => {
+  console.log(results);
+});
+
+// Output: 
+// [
+//     { status: 'fulfilled', value: 'Success' },
+//     { status: 'rejected', reason: 'Error' }
+// ]
+
+// Promise.race()
+// You want to act on the first completed promise, regardless of success or failure.
+const fast = new Promise((res,rej) => setTimeout(() => rej("Fast!"), 100));
+const slow = new Promise((res,rej) => setTimeout(() => res("Slow..."), 1000));
+
+Promise.race([fast, slow]).then((value) => {
+  console.log(value); // "Fast!" - if res
+}).catch((err)=>{
+    console.log(err); // "Fast!" - if rej
+});
+
+// Promise.any()
+// You want the first successfully resolved promise. Ignores all rejections.
+Promise.any([fast, slow]).then((value) => {
+  console.log(value); // Slow!
+})
