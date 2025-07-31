@@ -4,18 +4,19 @@
 
 let a = 5
 
-console.log(this.a);
+console.log(this.a);  // error - this is not defined in this context 
 
 
 // Question 2 : this inside Method
 
 let user = {
-    name: "Piyush",
+    name: "Jatin",
     age: 24,
       getDetails() {
           console.log(this.name)
       }
 };
+
   
 user.getDetails(); 
 
@@ -23,10 +24,10 @@ user.getDetails();
 // Question 3 : nested object 
 
 let user = {
-    name: "Piyush",
+    name: "Jatin",
     age: 24,
       childObj:{
-          newName:"Roadside Coder",
+          newName:"jatinydu",
           getDetails() {
               console.log(this.newName, "and" ,this.name)
           }
@@ -47,16 +48,16 @@ class user {
     }
 }
 
-const User = new user("Piyush") 
+const User = new user("Jatin") 
 User.getName();
 
 
 // Question 5 : Output
 
 const user = {
-    firstName: 'Piyush!',
+    firstName: 'Jatin!',
     getName() {
-      const firstName = 'Piyush!';
+      const firstName = 'Jatin!';
       return this.firstName;
     }
 };
@@ -81,7 +82,7 @@ alert( user.ref.name ); // What's the result?
 // Question 7 : What logs to console the following code snippet:
 
 const user = {
-    name: 'Piyush Agarwa;!',
+    name: 'Jatin Kumar!',
     logMessage() {
       console.log(this.name); 
     }
@@ -92,7 +93,7 @@ setTimeout(user.logMessage, 1000);
 // Question 8 : Output
 
 const user = {
-    name: 'Piyush',
+    name: 'Jatin',
     greet() {
       return `Hello, ${this.name}!`;
     },
