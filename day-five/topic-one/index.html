@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce & Throttle</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       main{
+         width: 100%;
+         height: 100vh;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         background-color: rgb(30, 15, 44);;
+         gap: 3px;
+         color: white;
+       }
+       div{
+           margin-block:20px ;
+           width: 20%;
+           display: flex;
+           flex-direction: column;
+              align-items: center;
+              gap: 10px;
+              background-color: rgba(54, 26, 79, 0.676);
+              padding: 30px;
+       }
+       button{
+        padding: 4px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color:rgb(255, 255, 255);
+        color: black;
+        cursor: pointer;
+        font-weight: 700;
+        margin-top: 10px;
+       }
+       div p span{
+        font-size: larger;
+        color: yellow;
+       }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Debounced Button Implementation</h1>
+        <p>created by - Jatin</p>
+        <div>
+            <p>Button count : <span id="btnCnt">0</span></p>
+            <p>Debounce count : <span id="debounceCnt">0</span></p>
+            <p>Throttle count : <span id="throttleCnt">0</span></p>
+            <button id="btn">increase</button>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
