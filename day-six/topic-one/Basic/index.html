@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propogation</title>
+    <style>
+        main{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+        div{
+            width: 50%;
+            height: 40%;
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;   
+            align-items: center;
+        }
+        form{
+            width: 50%;
+            height: 40%;
+            border:2px solid red;
+            display: flex;
+            justify-content: center;   
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Event Propagation</h1>
+        <p>Click the button below to see event propagation in action.</p>
+        <br/>
+        <div class="divEle">
+            <form action="" class="formEle">
+                <button type="button" id="btn">Click Me!</button>
+            </form>
+        </div>
+    </main>
+    <script src="../index.js"></script>
+</body>
+</html>
