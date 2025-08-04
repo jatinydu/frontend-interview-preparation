@@ -1,6 +1,6 @@
-# 🧠 Frontend Interview Prep Journey – Day by Day 🚀
+# 🧠 Frontend Interview Preparation 🚀
 
-Welcome to my personal **Frontend Interview Preparation Journey**, where I’m sharing everything I study daily – from **JavaScript fundamentals** to **React**, **polyfills**, **machine coding rounds**, and **web performance optimization**.
+Welcome to my personal **Frontend Interview Preparation**, where I’m sharing everything I study daily – from **JavaScript fundamentals** to **React**, **polyfills**, **machine coding rounds**, and **web performance optimization**.
 
 Each folder is a **day** containing:
 - 📝 Interview question
